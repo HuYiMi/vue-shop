@@ -1,8 +1,7 @@
 <!--
- * @Author: 极客James
- * @Motto: 求知若渴,虚心若愚
- * @Github: https://github.com/Geek-James/ddBuy
- * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
+ * @Author: 柯基与佩奇
+ * @Motto: 你若盛开，清风自来
+
  * @LastEditTime: 2019-12-06 17:46:45
  * @Description: 我的->我的绿卡->绿卡产品列表
  * @FilePath: /ddBuy/src/views/mine/Children/MyVipChildren/VipGoodsItems.vue

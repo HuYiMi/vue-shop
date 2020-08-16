@@ -1,8 +1,7 @@
 <!--
- * @Author: 极客James
- * @Motto: 求知若渴,虚心若愚
- * @Github: https://github.com/Geek-James/ddBuy
- * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
+ * @Author: 柯基与佩奇
+ * @Motto: 你若盛开，清风自来
+
  * @LastEditTime: 2019-11-28 22:47:17
  * @Description: 购物车模块
  * @FilePath: /ddBuy/src/views/cart/Cart.vue

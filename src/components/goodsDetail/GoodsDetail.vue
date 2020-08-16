@@ -1,8 +1,6 @@
 <!--
- * @Author: 极客James
- * @Motto: 求知若渴,虚心若愚
- * @Github: https://github.com/Geek-James/ddBuy
- * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
+ * @Author: 柯基与佩奇
+ * @Motto: 你若盛开，清风自来
  * @LastEditTime: 2019-12-06 17:55:10
  * @Description: 商品详情页 由于是Mock数据->通过上级页面通过路由的query传值 
  * @supplement   企业开发,只需要拿到商品的id然后请求获取数据
@@ -11,20 +9,14 @@
 
 <template>
   <div id="goodsDetail">
-    <van-nav-bar title="商品详情"
-                 :fixed=true
-                 left-arrow
-                 @click-left="onClickLeft">
-    </van-nav-bar>
+    <van-nav-bar title="商品详情" :fixed="true" left-arrow @click-left="onClickLeft"></van-nav-bar>
     <div class="goodsDetailWrapper">
       <!-- 商品图 -->
       <div class="goodsImage">
-        <img :src="goodsInfo.small_image"
-             alt="">
+        <img :src="goodsInfo.small_image" alt />
       </div>
       <!-- 限时抢购  -->
-      <div class="flash"
-           v-show="goodsInfo.isFlash">
+      <div class="flash" v-show="goodsInfo.isFlash">
         <div class="flashLeft">
           <span>限时抢购</span>
           <i>抢购中</i>
@@ -32,9 +24,7 @@
         <div class="flashRight">
           <span>距结束</span>
           <!-- 倒计时 -->
-          <van-count-down :time="time"
-                          class="countStyle"
-                          format="HH mm ss">
+          <van-count-down :time="time" class="countStyle" format="HH mm ss">
             <template v-slot="timeData">
               <span class="item">{{ timeData.hours }}</span>
               <i>:</i>
@@ -54,14 +44,16 @@
         <span class="totalSales">已售:{{goodsInfo.total_sales}}</span>
         <van-divider />
         <div class="shippingInfo">
-          <van-icon name="cluster-o" />此商品按500g/份计价,如实收少于500g将退还差价</div>
+          <van-icon name="cluster-o" />此商品按500g/份计价,如实收少于500g将退还差价
+        </div>
         <van-divider />
         <div class="shippingInfo">
-          <van-icon name="clock-o" />最快29分钟内送达</div>
+          <van-icon name="clock-o" />最快29分钟内送达
+        </div>
       </div>
       <!-- 规格 -->
       <div class="specifications">
-        <div class="specificationsTitle">规格 </div>
+        <div class="specificationsTitle">规格</div>
         <van-divider dashed />
         <div class="conditions">
           <span>保存条件</span>
@@ -75,21 +67,14 @@
         <van-divider dashed />
       </div>
       <div class="showGoods">
-        <img :src="goodsInfo.small_image"
-             alt="">
-        <img :src="goodsImage"
-             alt="">
+        <img :src="goodsInfo.small_image" alt />
+        <img :src="goodsImage" alt />
       </div>
 
       <!-- 底部商品导航    -->
-      <van-goods-action :safe-area-inset-bottom=true
-                        style="z-index:100">
-        <van-goods-action-icon icon="cart-o"
-                               :info="goodsNum"
-                               @click="onClickCar" />
-        <van-goods-action-button type="warning"
-                                 text="加入购物车"
-                                 @click="onClickAddToCar" />
+      <van-goods-action :safe-area-inset-bottom="true" style="z-index:100">
+        <van-goods-action-icon icon="cart-o" :info="goodsNum" @click="onClickCar" />
+        <van-goods-action-button type="warning" text="加入购物车" @click="onClickAddToCar" />
       </van-goods-action>
     </div>
 
@@ -99,31 +84,29 @@
 </template>
 
 <script type="text/javascript">
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations } from "vuex";
 
 export default {
-  created () {
-  },
-  mounted () {
+  created() {},
+  mounted() {
     console.log();
-
   },
-  computed: {
-  },
-  data () {
+  computed: {},
+  data() {
     return {
       // 倒计时时间设置
       time: 30 * 60 * 1000 * 100,
       // 是否是限时抢购
       isFlash: false,
       goodsInfo: this.$route.query,
-      goodsImage: 'https:\/\/img.ddimg.mobi\/3f280ff77ab3d1571213379189.jpg?width=750&height=1869'
-    }
+      goodsImage:
+        "https://img.ddimg.mobi/3f280ff77ab3d1571213379189.jpg?width=750&height=1869",
+    };
   },
   computed: {
-    ...mapState(['shopCart']),
+    ...mapState(["shopCart"]),
     // 购物车商品数量
-    goodsNum () {
+    goodsNum() {
       let num = 0;
       Object.values(this.shopCart).forEach((goods, index) => {
         num += goods.num;
@@ -131,27 +114,25 @@ export default {
       if (num > 0) {
         return num;
       }
-    }
+    },
   },
-  components: {
-
-  },
+  components: {},
   methods: {
-    ...mapMutations(['ADD_TO_CART']),
+    ...mapMutations(["ADD_TO_CART"]),
     // 返回
-    onClickLeft () {
+    onClickLeft() {
       this.$router.go(-1);
     },
     // 加入购物车
-    onClickAddToCar () {
+    onClickAddToCar() {
       this.ADD_TO_CART(this.goodsInfo);
     },
     // 点击了购物车
-    onClickCar () {
-      this.$router.push({ name: 'cart' });
-    }
-  }
-}
+    onClickCar() {
+      this.$router.push({ name: "cart" });
+    },
+  },
+};
 </script>
 <style lang="less" scoped>
 #goodsDetail {

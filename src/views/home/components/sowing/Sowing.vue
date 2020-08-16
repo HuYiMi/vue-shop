@@ -1,8 +1,7 @@
 <!--
- * @Author: 极客James
- * @Motto: 求知若渴,虚心若愚
- * @Github: https://github.com/Geek-James/ddBuy
- * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
+ * @Author: 柯基与佩奇
+ * @Motto: 你若盛开，清风自来
+
  * @LastEditTime: 2019-11-08 10:02:43
  * @Description: 首页->轮播组件
  * @FilePath: /ddBuy/src/views/home/components/sowing/Sowing.vue

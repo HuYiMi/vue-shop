@@ -1,101 +1,100 @@
 <!--
- * @Author: 极客James
- * @Motto: 求知若渴,虚心若愚
- * @Github: https://github.com/Geek-James/ddBuy
- * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
+ * @Author: 柯基与佩奇
+ * @Motto: 你若盛开，清风自来
+
  * @LastEditTime: 2019-11-10 15:02:56
  * @Description: 我的->我的绿卡
  * @FilePath: /ddBuy/src/views/mine/Children/MyVip.vue
  -->
 <template>
-  <div id="myVip"
-       ref="myVip">
+  <div id="myVip" ref="myVip">
     <div v-if="!isShowLoading">
-      <van-nav-bar title="绿卡"
-                   :border=false
-                   :fixed="true"
-                   @click-left="onClickLeft"
-                   left-arrow
-                   style="height:2.5rem" />
+      <van-nav-bar
+        title="绿卡"
+        :border="false"
+        :fixed="true"
+        @click-left="onClickLeft"
+        left-arrow
+        style="height:2.5rem"
+      />
       <div class="vipHeader">
-        <img src="./../../../images/mine/vip.png"
-             alt="">
+        <img src="./../../../images/mine/vip.png" alt />
       </div>
       <div class="vipPrivilege">
         <p class="title">绿卡特权</p>
-        <van-grid :border=false>
-          <van-grid-item icon="vip-card-o"
-                         text="专享券" />
-          <van-grid-item icon="discount"
-                         text="专享特价" />
-          <van-grid-item icon="gem-o"
-                         text="2倍积分" />
-          <van-grid-item icon="more-o"
-                         text="更多特权" />
+        <van-grid :border="false">
+          <van-grid-item icon="vip-card-o" text="专享券" />
+          <van-grid-item icon="discount" text="专享特价" />
+          <van-grid-item icon="gem-o" text="2倍积分" />
+          <van-grid-item icon="more-o" text="更多特权" />
         </van-grid>
-        <div class="becomVipBtn"
-             @click="goToPayPage">5折开通绿卡</div>
+        <div class="becomVipBtn" @click="goToPayPage">5折开通绿卡</div>
       </div>
       <!-- 第1部分 -->
       <div class="coupons">
         <!--今日专享券 -->
-        <span class="number">1</span><span class="desc">绿卡专享券 天天领取优惠</span>
-        <p class="todayCouns">今日专享券<i>每天0点更新</i></p>
+        <span class="number">1</span>
+        <span class="desc">绿卡专享券 天天领取优惠</span>
+        <p class="todayCouns">
+          今日专享券
+          <i>每天0点更新</i>
+        </p>
         <div class="quanBox">
-          <div class="quan"
-               v-for="(item,index) in todayTicket"
-               :key="item.id"
-               @click="getCoupons">
-            <div class="money"><i>¥</i>{{item.money}}</div>
+          <div class="quan" v-for="item in todayTicket" :key="item.id" @click="getCoupons">
+            <div class="money">
+              <i>¥</i>
+              {{item.money}}
+            </div>
             <div class="couponsConditions">满{{item.pay_min}}元使用</div>
             <div class="couponsScope">{{item.description}}</div>
-            <div class="getCopons">
-              立即领取
-            </div>
+            <div class="getCopons">立即领取</div>
           </div>
         </div>
         <!--本周专享券-->
         <p class="todayCouns">本周专享券</p>
         <div class="quanBox">
-          <div class="quan"
-               v-for="(item,index) in weekTicket"
-               :key="item.id"
-               @click="getCoupons">
-            <div class="money"><i>¥</i>{{item.money}}</div>
+          <div class="quan" v-for="item in weekTicket" :key="item.id" @click="getCoupons">
+            <div class="money">
+              <i>¥</i>
+              {{item.money}}
+            </div>
             <div class="couponsConditions">满{{item.pay_min}}元可用</div>
             <div class="couponsScope">{{item.description}}</div>
-            <div class="getCopons">
-              立即领取
-            </div>
+            <div class="getCopons">立即领取</div>
           </div>
         </div>
       </div>
       <!-- 第2部分 -->
       <div class="coupons">
-        <span class="number">2</span><span class="desc">绿卡专享券 天天领取优惠</span>
+        <span class="number">2</span>
+        <span class="desc">绿卡专享券 天天领取优惠</span>
         <div class="integralBox">
           <div class="leftBox">
             <div class="leftBoxTitle">您当前购物</div>
-            <div class="leftBoxSubTitle">返积分为<i>1倍</i></div>
+            <div class="leftBoxSubTitle">
+              返积分为
+              <i>1倍</i>
+            </div>
           </div>
           <div class="rightBox">
             <div class="rightBoxTitle">开通绿卡购物</div>
-            <div class="rightBoxSubTitle">返积分为<i>2倍</i></div>
+            <div class="rightBoxSubTitle">
+              返积分为
+              <i>2倍</i>
+            </div>
             <div class="line"></div>
-            <img src="./../../../images/mine/rockets.png"
-                 alt="">
+            <img src="./../../../images/mine/rockets.png" alt />
           </div>
         </div>
-        <div class="integralToFast"
-             @click="goToPayPage">立即开启积分加速</div>
+        <div class="integralToFast" @click="goToPayPage">立即开启积分加速</div>
       </div>
       <!-- 第3部分 -->
       <div class="coupons">
-        <span class="number">3</span><span class="desc">绿卡专享特价</span>
+        <span class="number">3</span>
+        <span class="desc">绿卡专享特价</span>
         <!-- 可横向滑动的菜单 -->
         <van-sticky :offset-top="40">
-          <VipMenuTitleScroll :menuTitlesArray="cate"
-                              @menuTitleClick="menuTitleClick" />
+          <VipMenuTitleScroll :menuTitlesArray="cate" @menuTitleClick="menuTitleClick" />
         </van-sticky>
         <!-- Vip商品列表 -->
         <VipGoodsItems :vipCateDetail="cateDetail" />
@@ -103,16 +102,13 @@
     </div>
     <!-- 底部按钮 -->
     <transition name="fade">
-      <div class="bottomJoinVip"
-           v-show="isShowBottomBtn"
-           transiton="fade">
+      <div class="bottomJoinVip" v-show="isShowBottomBtn" transiton="fade">
         <div class="bottomDesc">
-          <span class="yearCart">年卡</span><i>88元</i><span class="originPrice">180元</span>
+          <span class="yearCart">年卡</span>
+          <i>88元</i>
+          <span class="originPrice">180元</span>
         </div>
-        <div class="joinVip"
-             @click="goToPayPage">
-          开通绿卡
-        </div>
+        <div class="joinVip" @click="goToPayPage">开通绿卡</div>
       </div>
     </transition>
     <!-- 数据加载提示gif -->
@@ -121,82 +117,85 @@
 </template>
 
 <script type="text/javascript">
-
-import { Dialog } from 'vant'
-import { getVipContent } from './../../../serve/api/index.js'
+import { Dialog } from "vant";
+import { getVipContent } from "./../../../serve/api/index.js";
 
 // 水平滑动组件
-import VipMenuTitleScroll from './MyVipChildren/VipMenuTitleScroll'
+import VipMenuTitleScroll from "./MyVipChildren/VipMenuTitleScroll";
 // 商品列表组件
-import VipGoodsItems from './MyVipChildren/VipGoodsItems'
+import VipGoodsItems from "./MyVipChildren/VipGoodsItems";
 
-import Loading from '../../../components/loading/LoadingGif'
+import Loading from "../../../components/loading/LoadingGif";
 
 export default {
-  data () {
+  data() {
     return {
-      todayTicket: [],//今日更新
-      weekTicket: [],// 本周更新
-      cate: [],      // 分类标题
+      todayTicket: [], //今日更新
+      weekTicket: [], // 本周更新
+      cate: [], // 分类标题
       cateDetail: [],
       isShowLoading: true,
       currentSubTitle: 0,
-      isShowBottomBtn: false
-    }
+      isShowBottomBtn: false,
+    };
   },
-  created () {
-
-  },
-  mounted () {
+  created() {},
+  mounted() {
     // 初始化数据
     this._initData();
     let box = this.$refs.myVip;
-    box.addEventListener('scroll', () => {
-      this.handleScroll();
-    }, false);
+    box.addEventListener(
+      "scroll",
+      () => {
+        this.handleScroll();
+      },
+      false
+    );
   },
   components: {
     Loading,
     VipMenuTitleScroll,
-    VipGoodsItems
+    VipGoodsItems,
   },
   methods: {
     // 返回
-    onClickLeft () {
+    onClickLeft() {
       this.$router.back();
     },
     // 数据请求
-    async  _initData () {
+    async _initData() {
       let ref = await getVipContent();
       if (ref.success) {
         // 设置数据
         this.todayTicket = ref.data.today_ticket.tickets;
         this.weekTicket = ref.data.week_ticket.tickets;
         this.cate = ref.data.cate;
-        this.cateDetail = ref.data.cate_detail
+        this.cateDetail = ref.data.cate_detail;
         // 隐藏动画
         this.isShowLoading = false;
       }
     },
     // 领取优惠券
-    getCoupons () {
+    getCoupons() {
       Dialog.confirm({
-        message: '开通绿卡,立享此券',
+        message: "开通绿卡,立享此券",
         confirmButtonText: "开卡领券",
-        confirmButtonColor: '#60b86a'
-      }).then(() => {
-        // 跳转到开通会员界面
-        this.$router.push({ name: 'vipPay' });
-      }).catch(() => {
-        // on cancel
-      });
+        confirmButtonColor: "#60b86a",
+      })
+        .then(() => {
+          // 跳转到开通会员界面
+          this.$router.push({ name: "vipPay" });
+        })
+        .catch(() => {
+          // on cancel
+        });
     },
     // 开通绿卡支付
-    goToPayPage () {
-      this.$router.push({ name: 'vipPay' });
+    goToPayPage() {
+      this.$router.push({ name: "vipPay" });
     },
     // 监听页面滑动显示和隐藏底部Button
-    handleScroll () {
+    handleScroll() {
       var scrollTop = this.$refs.myVip.scrollTop;
       if (scrollTop > 500) {
         this.isShowBottomBtn = true;
@@ -205,11 +204,9 @@ export default {
       }
     },
     // 处理子组件VipMenuTitleScroll传递的事件
-    menuTitleClick (index) {
-
-    }
-  }
-}
+    menuTitleClick(index) {},
+  },
+};
 </script>
 <style lang="less" scoped>
 #myVip {
